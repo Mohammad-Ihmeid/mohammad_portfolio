@@ -1,0 +1,49 @@
+{
+    "@@locale": "en",
+
+    "appName": "Mohammad Ihmeid",
+
+    "hi" : "Hi",
+    "im_mohammad" : "I’m Mohammad 👋",
+    "hero_bio": "I am a Full Stack Developer specializing in Flutter and ASP.NET Core, focused on building high-quality mobile applications that are fast, visually appealing, and user-friendly.With over three years of hands-on experience in mobile development, I still enjoy creating innovative solutions as if it were my very first project.",
+    "amman": "Amman",
+    "jordan": "Jordan",
+    "available_for_new_projects" : "Available for new projects",
+    "switch_theme" : "Switch Theme",
+    "copy" : "Copy",
+    "copied" : "Copied!",
+
+    "contact" : "Contact",
+    "testimonials" : "Testimonials",
+    "work" : "Work",
+    "about" : "About",
+    "download_cv" : "Download CV",
+
+    "about_me" : "About me",
+    "curious_about_me" : "Curious about me?",
+    "here_you_have_it" : "Here you have it",
+    "bio_intro": "I’m a passionate Full Stack Mobile Developer specializing in Flutter and ASP.NET Core. I began my journey in 2022 focusing on mobile development, and since then I have been growing steadily, building applications that combine performance, security, and beautiful user interfaces.",
+    "bio_work": "I work end-to-end across the development lifecycle: from UI/UX design and frontend Flutter implementation, to backend services with ASP.NET Core, database optimization, and deployment. While I enjoy working across the full stack, my main strength lies in delivering smooth and visually appealing Flutter applications that provide real value to users.",
+    "bio_mindset": "I’m highly motivated to learn quickly, adapt to new technologies, and refine my coding practices. Writing clean, maintainable, and scalable code is something I deeply care about. User experience and pixel-perfect design matter to me just as much as the technical foundation.",
+    "bio_stack": "My core stack includes Flutter, Dart, ASP.NET Core, SQL Server, and Firebase. I also bring experience in DevOps, CI/CD pipelines, and technical leadership where I support teams in building reliable and scalable solutions.",
+    "bio_personal": "Outside of coding, I enjoy sports and reading. I actively share my projects and learnings on GitHub and LinkedIn, engaging with the tech community and staying up to date with the latest trends.",
+    "bio_facts": "Quick facts about me:",
+    "bio_fact1": "• Bachelor’s in Computer Engineering",
+    "bio_fact2": "• Avid Learner who is always exploring new skills",
+    "bio_fact3": "• Currently a Full-time employee",
+    "bio_fact4": "• Open to freelance opportunities and collaborations",
+
+    "skills" : "Skills",
+    "skills_tools_technologies_really_good" : "The skills, tools and technologies I am really good at:",
+
+    "experience" : "Experience",
+    "summary_of_my_most_recent_experiences" : "Here is a quick summary of my most recent experiences:",
+
+    "some_of_the_noteworthy_projects" : "Some of the noteworthy projects I have built:",
+
+    "nice_things_people_have_said" : "Nice things people have said about me:",
+
+    "get_in_touch" : "Get in touch",
+    "feel_free_to_reach" : "What’s next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.",
+    "you_may_also_find_me_on_these_platforms" : "You may also find me on these platforms!"
+}

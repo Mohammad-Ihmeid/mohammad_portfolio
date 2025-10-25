@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:mohammad_portfolio/core/common/widgets/section_button.dart';
+import 'package:mohammad_portfolio/core/data/experience_data.dart';
+import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
+import 'package:mohammad_portfolio/core/res/app_color/app_color_dark.dart';
+import 'package:mohammad_portfolio/core/res/app_color/app_color_light.dart';
+import 'package:mohammad_portfolio/core/utils/enums.dart';
+import 'package:mohammad_portfolio/src/experience/presentation/widgets/experience_card.dart';
+
+class ExperienceView extends StatelessWidget {
+  const ExperienceView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Container(
+        color: context.isDark ? AppColorsDark.gray50 : AppColorsLight.gray50,
+        padding: EdgeInsets.symmetric(
+          horizontal: context.width * 0.08,
+          vertical:
+              context.deviceLayout == DeviceSize.desktop
+                  ? 96
+                  : context.deviceLayout == DeviceSize.tablet
+                  ? 80
+                  : 64,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SectionButton(title: context.language.experience),
+            const SizedBox(height: 10),
+            Text(
+              context.language.summary_of_my_most_recent_experiences,
+              textAlign: TextAlign.center,
+              style: context.theme.textTheme.titleMedium,
+            ),
+            SizedBox(
+              height:
+                  context.deviceLayout == DeviceSize.desktop
+                      ? 48
+                      : context.deviceLayout == DeviceSize.tablet
+                      ? 36
+                      : 24,
+            ),
+            SizedBox(
+              height: 600,
+              width:
+                  context.deviceLayout == DeviceSize.desktop
+                      ? context.width * 0.6
+                      : context.width,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: ExperienceData.getData(context: context).length,
+                itemBuilder: (context, index) {
+                  final element =
+                      ExperienceData.getData(context: context)[index];
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      bottom:
+                          context.deviceLayout == DeviceSize.desktop
+                              ? 48
+                              : context.deviceLayout == DeviceSize.tablet
+                              ? 36
+                              : 24,
+                    ),
+                    child: ExperienceCard(experience: element),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
