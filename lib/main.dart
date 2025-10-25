@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mohammad_portfolio/core/common/app/provides/language_provider.dart';
+import 'package:mohammad_portfolio/core/common/app/provides/theme_provider.dart';
 import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
 import 'package:mohammad_portfolio/core/res/theme_data/theme_data_dark.dart';
 import 'package:mohammad_portfolio/core/res/theme_data/theme_data_light.dart';
@@ -14,7 +15,17 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LanguageProvider()..loadLanguage(),
+        ),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,22 +33,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => LanguageProvider()..loadLanguage(),
-      child: Consumer<LanguageProvider>(
-        builder: (context, language, _) {
-          return MaterialApp(
-            locale: language.localeApp,
-            onGenerateTitle: (context) => context.language.appName,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            debugShowCheckedModeBanner: false,
-            theme: themeDataLight(context),
-            darkTheme: themeDataDark(context),
-            onGenerateRoute: generateRoute,
-          );
-        },
-      ),
+    final language = Provider.of<LanguageProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return MaterialApp(
+      locale: language.localeApp,
+      onGenerateTitle: (context) => context.language.appName,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      debugShowCheckedModeBanner: false,
+      themeMode: themeProvider.themeMode,
+      theme: themeDataLight(context),
+      darkTheme: themeDataDark(context),
+      onGenerateRoute: generateRoute,
     );
   }
 }

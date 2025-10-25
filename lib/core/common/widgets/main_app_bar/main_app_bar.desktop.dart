@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mohammad_portfolio/core/common/app/provides/theme_provider.dart';
+import 'package:mohammad_portfolio/core/common/widgets/icon_hover_button.dart';
 import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
 import 'package:mohammad_portfolio/core/res/app_color/app_color_dark.dart';
 import 'package:mohammad_portfolio/core/res/app_color/app_color_light.dart';
 import 'package:mohammad_portfolio/core/res/app_icon/app_icon_dark.dart';
 import 'package:mohammad_portfolio/core/res/app_icon/app_icon_light.dart';
 import 'package:mohammad_portfolio/core/utils/constants.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainAppBarDesktop extends StatelessWidget {
@@ -70,10 +73,18 @@ class MainAppBarDesktop extends StatelessWidget {
               endIndent: 10,
             ),
             const SizedBox(width: 20),
-            Image.asset(
-              context.isDark
-                  ? AppIconDark.darkModeIcon24
-                  : AppIconLight.lightModeIcon24,
+            IconHoverButton(
+              assetPath:
+                  context.isDark
+                      ? AppIconDark.darkModeIcon24
+                      : AppIconLight.lightModeIcon24,
+              onTap: () {
+                Provider.of<ThemeProvider>(
+                  context,
+                  listen: false,
+                ).toggleTheme();
+              },
+              tooltip: context.isDark ? 'Light Mode' : 'Dark Mode',
             ),
             const SizedBox(width: 15),
             ElevatedButton(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mohammad_portfolio/core/common/app/provides/theme_provider.dart';
+import 'package:mohammad_portfolio/core/common/widgets/icon_hover_button.dart';
 import 'package:mohammad_portfolio/core/common/widgets/main_app_bar/main_app_bar.dart';
 import 'package:mohammad_portfolio/core/constants/app_values.dart';
 import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
@@ -14,6 +16,7 @@ import 'package:mohammad_portfolio/src/home/presentation/refactor/home_body.dart
 import 'package:mohammad_portfolio/src/skills/presentation/views/skills_view.dart';
 import 'package:mohammad_portfolio/src/testimonials/presentation/views/testimonials_view.dart';
 import 'package:mohammad_portfolio/src/work/presentation/views/work_view.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,15 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<State<StatefulWidget>> workKey = GlobalKey();
   final GlobalKey<State<StatefulWidget>> testimonialsKey = GlobalKey();
   final GlobalKey<State<StatefulWidget>> contactKey = GlobalKey();
-
-  // مبدئيًا: تبديل اللغة/الثيم صوري — وصّلها بإدارة الحالة لاحقًا
-  // void _toggleTheme() {
-  //   // استخدم Provider/Riverpod/InheritedWidget لضبط ThemeMode على مستوى التطبيق
-  // }
-
-  // void _toggleLocale() {
-  //   // غيّر Locale التطبيق (ar/en) عبر state management
-  // }
 
   void _scrollTo(GlobalKey key) {
     final ctx = key.currentContext;
@@ -139,10 +133,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: context.theme.textTheme.bodySmall,
                   ),
                   const Spacer(),
-                  Image.asset(
-                    context.isDark
-                        ? AppIconDark.darkModeIcon24
-                        : AppIconLight.lightModeIcon24,
+                  IconHoverButton(
+                    assetPath:
+                        context.isDark
+                            ? AppIconDark.darkModeIcon24
+                            : AppIconLight.lightModeIcon24,
+                    onTap: () {
+                      Provider.of<ThemeProvider>(
+                        context,
+                        listen: false,
+                      ).toggleTheme();
+                    },
+                    tooltip: context.isDark ? 'Light Mode' : 'Dark Mode',
                   ),
                 ],
               ),
