@@ -62,9 +62,12 @@ class ContactView extends StatelessWidget {
                       : AppIconLight.inboxIcon24,
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  'mohammadmaher1999@outlook.com',
-                  style: context.theme.textTheme.displayMedium,
+                Flexible(
+                  child: Text(
+                    'mohammadmaher1999@outlook.com',
+                    style: context.theme.textTheme.displayMedium,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(width: 10),
                 const CopyTextButton(
@@ -105,6 +108,7 @@ class ContactView extends StatelessWidget {
             Text(
               context.language.you_may_also_find_me_on_these_platforms,
               style: context.theme.textTheme.bodySmall,
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
             Row(
