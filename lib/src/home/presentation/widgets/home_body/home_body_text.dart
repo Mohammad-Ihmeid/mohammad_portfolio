@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mohammad_portfolio/core/common/widgets/link_button.dart';
+import 'package:mohammad_portfolio/core/common/widgets/type_writer_widget.dart';
 import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
 import 'package:mohammad_portfolio/core/res/app_color/app_color_dark.dart';
 import 'package:mohammad_portfolio/core/res/app_color/app_color_light.dart';
@@ -15,12 +16,14 @@ class HomeBodyText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          '${context.language.hi}, ${context.language.im_mohammad}',
-          style: context.theme.textTheme.displayLarge!.copyWith(
+        TypewriterWidget(
+          texts: ['${context.language.hi}, ${context.language.im_mohammad}'],
+          textStyle: context.theme.textTheme.displayLarge!.copyWith(
             color:
                 context.isDark ? AppColorsDark.gray900 : AppColorsLight.gray900,
           ),
+          deletingSpeed: const Duration(milliseconds: 45),
+          pauseDuration: const Duration(milliseconds: 1400),
         ),
         const SizedBox(height: 20),
         Text(
