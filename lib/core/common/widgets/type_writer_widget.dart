@@ -43,8 +43,11 @@ class _TypewriterWidgetState extends State<TypewriterWidget> {
   Timer? _cursorTimer;
   int _textIndex = 0; // أي نص من texts
   int _charIndex = 0; // موضع الحرف الحالي داخل النص
-  //bool _isTyping = true; // true => نكتب، false => نمسح
   bool _showCursor = true;
+
+  // جديد: نخزن الارتفاع المحسوب وعرض تم الحساب عليه
+  double? _cachedMaxHeight;
+  double? _cachedWidthForHeight;
 
   String get _currentFullText => widget.texts[_textIndex];
 
@@ -63,6 +66,8 @@ class _TypewriterWidgetState extends State<TypewriterWidget> {
     // لو تغيرت القائمة أو النص في الـ parent، أعد الضبط بشكل آمن
     if (oldWidget.texts != widget.texts) {
       _resetState();
+      // إن تغيرت النصوص أو الستايل نلغي الكاش للارتفاع ليعاد حسابه
+      _cachedMaxHeight = null;
       if (widget.startImmediately) {
         _startTyping();
         _startCursorBlink();
@@ -74,7 +79,6 @@ class _TypewriterWidgetState extends State<TypewriterWidget> {
     _cancelTimers();
     _textIndex = 0;
     _charIndex = 0;
-    //_isTyping = true;
     _showCursor = true;
   }
 
@@ -153,6 +157,30 @@ class _TypewriterWidgetState extends State<TypewriterWidget> {
     if (mounted) setState(() => _showCursor = false);
   }
 
+  // --- دالة لحساب أكبر ارتفاع لنصوص القائمة ضمن عرض معيّن ---
+  double _computeMaxHeightForWidth(double maxWidth) {
+    // إذا حسبنا سابقًا لنفس العرض نعيد القيمة المخزنة
+    if (_cachedMaxHeight != null && _cachedWidthForHeight == maxWidth) {
+      return _cachedMaxHeight!;
+    }
+
+    final defaultStyle = widget.textStyle ?? DefaultTextStyle.of(context).style;
+    var maxHeight = 0.0;
+
+    for (final text in widget.texts) {
+      final tp = TextPainter(
+        text: TextSpan(text: text, style: defaultStyle),
+        textDirection: TextDirection.ltr, // ضع المناسب لتطبيقك (قد يكون rtl)
+      )..layout(maxWidth: maxWidth);
+      if (tp.height > maxHeight) maxHeight = tp.height;
+    }
+
+    // احتفظنا بالنتيجة للكفاءة
+    _cachedMaxHeight = maxHeight;
+    _cachedWidthForHeight = maxWidth;
+    return maxHeight;
+  }
+
   @override
   void dispose() {
     _cancelTimers();
@@ -161,13 +189,27 @@ class _TypewriterWidgetState extends State<TypewriterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final visible = _currentFullText.substring(0, _charIndex);
-    final cursor =
-        widget.cursor.isEmpty ? '' : (_showCursor ? widget.cursor : ' ');
-    return Text(
-      '$visible$cursor',
-      textAlign: TextAlign.center,
-      style: widget.textStyle ?? DefaultTextStyle.of(context).style,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth =
+            constraints.maxWidth.isFinite
+                ? constraints.maxWidth
+                : MediaQuery.of(context).size.width;
+        final reservedHeight = _computeMaxHeightForWidth(maxWidth);
+
+        final visible = _currentFullText.substring(0, _charIndex);
+        final cursor =
+            widget.cursor.isEmpty ? '' : (_showCursor ? widget.cursor : ' ');
+
+        return SizedBox(
+          height: reservedHeight,
+          child: Text(
+            '$visible$cursor',
+            textAlign: TextAlign.center,
+            style: widget.textStyle ?? DefaultTextStyle.of(context).style,
+          ),
+        );
+      },
     );
   }
 }

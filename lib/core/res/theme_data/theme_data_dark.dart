@@ -89,7 +89,12 @@ TextTheme textTheme(BuildContext context) {
     ),
     //Subtitle - (Desktop-Tablet-Mobile) - Semi Bold
     titleLarge: TextStyle(
-      fontSize: context.deviceLayout == DeviceSize.desktop ? 20 : 18,
+      fontSize:
+          context.deviceLayout == DeviceSize.desktop
+              ? 20
+              : context.deviceLayout == DeviceSize.tablet
+              ? 18
+              : 16,
       fontWeight: FontWeight.w600,
       color: AppColorsDark.gray900,
     ),
@@ -112,8 +117,8 @@ TextTheme textTheme(BuildContext context) {
       color: AppColorsDark.gray600,
     ),
     //Body2/Normal - All
-    bodySmall: const TextStyle(
-      fontSize: 16,
+    bodySmall: TextStyle(
+      fontSize: context.deviceLayout != DeviceSize.mobile ? 16 : 14,
       fontWeight: FontWeight.w400,
       color: AppColorsDark.gray600,
     ),
