@@ -12,27 +12,9 @@ class MediaRes {
   static const cloudDataSolutionsLogo =
       '$_baseImages/cloud_data_solutions_logo.jpg';
   static const mirasoftLogo = '$_baseImages/mirasoft_logo.png';
-  static const projectTest = '$_baseImages/project_test.png';
-
-  //Icon
-  /* Light */
-  // static const listLightIcon = '$_baseIcons/light/list_light_icon.png';
-  // static const lightModeIcon = '$_baseIcons/light/light_mode_icon.png';
-  // static const lightLocationIcon = '$_baseIcons/light/light_location_icon.png';
-  // static const lightGithubIcon = '$_baseIcons/light/light_github_icon.png';
-  // static const lightFigmaIcon = '$_baseIcons/light/light_figma_icon.png';
-  // static const lightTwitterIcon = '$_baseIcons/light/light_twitter_icon.png';
-  // static const lightExternalLinkIcon =
-  //     '$_baseIcons/light/light_external_link_icon.png';
-  /* Dark */
-  // static const listDarkIcon = '$_baseIcons/dark/list_dark_icon.png';
-  // static const darkModeIcon = '$_baseIcons/dark/dark_mode_icon.png';
-  // static const darkLocationIcon = '$_baseIcons/dark/dark_location_icon.png';
-  // static const darkGithubIcon = '$_baseIcons/dark/dark_github_icon.png';
-  // static const darkFigmaIcon = '$_baseIcons/dark/dark_figma_icon.png';
-  // static const darkTwitterIcon = '$_baseIcons/dark/dark_twitter_icon.png';
-  // static const darkExternalLinkIcon =
-  //     '$_baseIcons/dark/dark_external_link_icon.png';
+  static const qrProject = '$_baseImages/qr_project.jpg';
+  static const montraProject = '$_baseImages/montra_project.jpg';
+  static const portfolioProject = '$_baseImages/portfolio_project.jpg';
 
   //SVG
   static const aiSvg = '$_baseSVG/ai_icon.svg';

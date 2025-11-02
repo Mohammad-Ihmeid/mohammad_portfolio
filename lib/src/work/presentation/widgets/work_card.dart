@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mohammad_portfolio/core/common/widgets/link_button.dart';
 import 'package:mohammad_portfolio/core/constants/app_values.dart';
 import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
 import 'package:mohammad_portfolio/core/res/app_color/app_color_dark.dart';
@@ -43,6 +44,7 @@ class WorkCard extends StatelessWidget {
                 name: work.name,
                 desc: work.description,
                 skills: work.skills,
+                url: work.projectURL,
                 context: context,
               ),
             ),
@@ -69,6 +71,7 @@ class WorkCard extends StatelessWidget {
                           name: work.name,
                           desc: work.description,
                           skills: work.skills,
+                          url: work.projectURL,
                           context: context,
                         ),
                       ),
@@ -82,6 +85,7 @@ class WorkCard extends StatelessWidget {
                           name: work.name,
                           desc: work.description,
                           skills: work.skills,
+                          url: work.projectURL,
                           context: context,
                         ),
                       )
@@ -117,6 +121,7 @@ class WorkCard extends StatelessWidget {
                           name: work.name,
                           desc: work.description,
                           skills: work.skills,
+                          url: work.projectURL,
                           context: context,
                         ),
                       ),
@@ -130,6 +135,7 @@ class WorkCard extends StatelessWidget {
                           name: work.name,
                           desc: work.description,
                           skills: work.skills,
+                          url: work.projectURL,
                           context: context,
                         ),
                       )
@@ -156,6 +162,7 @@ class WorkCard extends StatelessWidget {
     required String name,
     required String desc,
     required List<String> skills,
+    required String url,
     required BuildContext context,
   }) {
     return Column(
@@ -192,10 +199,13 @@ class WorkCard extends StatelessWidget {
                   .toList(),
         ),
         const SizedBox(height: 24),
-        Image.asset(
-          context.isDark
-              ? AppIconDark.externalLinkIcon24
-              : AppIconLight.externalLinkIcon24,
+        LinkButton(
+          assetPath:
+              context.isDark
+                  ? AppIconDark.externalLinkIcon24
+                  : AppIconLight.externalLinkIcon24,
+          url: url,
+          tooltip: 'Project',
         ),
       ],
     );

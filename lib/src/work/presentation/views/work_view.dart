@@ -41,6 +41,7 @@ class WorkView extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: WorkData.getData(context: context).length,
               itemBuilder: (context, index) {
                 final element = WorkData.getData(context: context)[index];
