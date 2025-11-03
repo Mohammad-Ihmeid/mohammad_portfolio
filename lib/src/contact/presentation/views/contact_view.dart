@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mohammad_portfolio/core/common/widgets/link_button.dart';
 import 'package:mohammad_portfolio/core/common/widgets/section_button.dart';
 import 'package:mohammad_portfolio/core/extensions/context_extension.dart';
+import 'package:mohammad_portfolio/core/res/app_color/app_color_dark.dart';
+import 'package:mohammad_portfolio/core/res/app_color/app_color_light.dart';
 import 'package:mohammad_portfolio/core/res/app_icon/app_icon_dark.dart';
 import 'package:mohammad_portfolio/core/res/app_icon/app_icon_light.dart';
 import 'package:mohammad_portfolio/core/utils/constants.dart';
@@ -14,7 +16,8 @@ class ContactView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Padding(
+      child: Container(
+        color: context.isDark ? AppColorsDark.gray50 : AppColorsLight.gray50,
         padding: EdgeInsets.symmetric(
           horizontal: context.width * 0.08,
           vertical:

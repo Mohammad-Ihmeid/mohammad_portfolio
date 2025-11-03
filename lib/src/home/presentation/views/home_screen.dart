@@ -14,7 +14,6 @@ import 'package:mohammad_portfolio/src/contact/presentation/views/contact_view.d
 import 'package:mohammad_portfolio/src/experience/presentation/views/experience_view.dart';
 import 'package:mohammad_portfolio/src/home/presentation/refactor/home_body.dart';
 import 'package:mohammad_portfolio/src/skills/presentation/views/skills_view.dart';
-import 'package:mohammad_portfolio/src/testimonials/presentation/views/testimonials_view.dart';
 import 'package:mohammad_portfolio/src/work/presentation/views/work_view.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -182,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SkillsView(key: skillsKey),
           ExperienceView(key: experienceKey),
           WorkView(key: workKey),
-          TestimonialsView(key: testimonialsKey),
+          //TestimonialsView(key: testimonialsKey),
           ContactView(key: contactKey),
         ],
       ),
