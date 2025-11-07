@@ -1,11 +1,11 @@
 {
-    "name": "mohammad_portfolio",
-    "short_name": "mohammad_portfolio",
+    "name": "Mohammad | Mobile Developer & App Architect",
+    "short_name": "Mohammad Dev",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Discover mobile experiences crafted with Flutter — blending performance, design, and innovation by Mohammad.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
